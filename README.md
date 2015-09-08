@@ -2,7 +2,7 @@
 
 ## How to use ?
 
-simply use it from command line:
+simply use it from your shell:
 
 ```bash
 $ ./cheat_with_intersections 1.1.1.4/28 1.1.1.6/28
@@ -19,6 +19,6 @@ in the epitech context, with the network exams module.
 
 ## What it is not ?
 
-This is not a program designed to cheats mothafoka.
-If you are not skilled enough to computes this simple calculations
+This is not a program designed to cheat mothafoka.
+If you are not skilled enough to compute this simple calculations
 yourself, you should just go back to tek1 n00b.
