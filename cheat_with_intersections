@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'pry'
 require_relative 'ipv4'
 
 if __FILE__ == $0
