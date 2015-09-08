@@ -1,13 +1,42 @@
 #!/usr/bin/env ruby
+# coding: utf-8
 
-require_relative 'ipv4'
+require_relative 'lib/ipv4'
+
+require 'optparse'
+$opt = OptionParser.new do |opts|
+  opts.banner = "Usage: nephos-generator [controller name] [appli [name]]"
+
+  opts.on("-r=ip1,ip2,..", Array, "Exemple: -r 1.1.1.1/26,1.1.1.2/24") do |a|
+    $reachables = true
+    $ip1 = IPv4.new a[0]
+    $ips = a[1..-1].map{|ip| IPv4.new ip}
+  end
+
+  opts.on("-i", "--interactive") do
+    $interactive = true
+  end
+
+end.parse!
+
+def reachables
+  puts "-"*6 + "|" + "-"*67,
+       "base  | " + $ip1.to_s,
+       "-"*6 + "|" + "-"*67
+  $ips.each do |ip|
+    err = [$ip1.can_reach?(ip), ip.can_reach?($ip1)]
+    r = "yes  "
+    if err.include? false
+      err_disp = ""
+      err_disp += err[0] ? "." : "!"
+      err_disp += err[1] ? "." : "!"
+      r = "err#{err_disp}"
+    end
+    puts "#{r} | #{ip}"
+  end
+end
 
 if __FILE__ == $0
-  ip1 = IPv4.new(ARGV[0])
-  ip2 = IPv4.new(ARGV[1])
-  puts ip1.to_s, ip2.to_s
-  puts "Are reachables ?"
-  r = "no"
-  r = "yes" if ip1.can_reach?(ip2) and ip2.can_reach?(ip1)
-  puts r
+  interactive if $interactive
+  reachables if $reachables
 end

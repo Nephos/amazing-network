@@ -1,5 +1,8 @@
 # coding: utf-8
 
+require_relative 'ipv4/helpers'
+require_relative 'ipv4/compare'
+
 class IPv4
 
   attr_reader :frag, :mask, :net, :broad
@@ -11,12 +14,6 @@ class IPv4
     @mask = (match[-1] || 32).to_i
     calc_net!
     calc_broad!
-  end
-
-  def to_s
-    str = "ip: " + @frag.join(".") + "/" + @mask.to_s
-    str += " net: " + @net.join(".")
-    str += " broad: " + @broad.join(".")
   end
 
   def mask_ip
