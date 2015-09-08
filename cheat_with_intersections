@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require 'pry'
+require_relative 'ipv4'
+
+if __FILE__ == $0
+  ip1 = IPv4.new(ARGV[0])
+  ip2 = IPv4.new(ARGV[1])
+  puts ip1.to_s, ip2.to_s
+  puts "Are reachables ?"
+  r = "no"
+  r = "yes" if ip1.can_reach?(ip2) and ip2.can_reach?(ip1)
+  puts r
+end
