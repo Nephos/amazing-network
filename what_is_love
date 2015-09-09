@@ -18,7 +18,7 @@ loop do
   i = Integer(str) rescue exit
 
   puts "-"*32
-  puts DD[i]['content']
+  puts DD[i]['content'] rescue puts ">'.'<    < miawou ? "
   puts "-"*32
 
 end
