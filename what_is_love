@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+# coding: utf-8
+
+require 'yaml'
+
+D = YAML.load_file("data.yml")
+DD = D['d']
+
+loop do
+  DD.each_with_index{|e,i| puts "#{i}. #{e['title']}" }
+
+  print "choice > "
+  str = gets.to_s.strip
+  if str.empty?
+    puts "-"*32
+    next
+  end
+  i = Integer(str) rescue exit
+
+  puts "-"*32
+  puts DD[i]['content']
+  puts "-"*32
+
+end
