@@ -6,6 +6,8 @@ require 'yaml'
 D = YAML.load_file("data.yml")
 DD = D['d']
 
+trap("SIGINT"){exit}
+
 loop do
   DD.each_with_index{|e,i| puts "#{i}. #{e['title']}" }
 
