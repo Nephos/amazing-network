@@ -1,9 +1,9 @@
 d:
   - title: "Qu'est ce que le modele OSI ?"
     content: "Le modèle OSI (de l'anglais Open Systems Interconnection) est un standard de communication, en réseau, de tous les systèmes informatiques. C'est un modèle de communications entre ordinateurs proposé par l'ISO qui décrit les fonctionnalités nécessaires à la communication et l'organisation de ces fonctions."
-  - title: "Combien de couche pour le protocole OSI ?"
+  - title: "Combien de couches pour le protocole OSI ?"
     content: "Il existe 7 couches (Matérielles et Hautes)"
-  - title: "Quelles sont les couches du protocole OSI ?"
+  - title: "Quelles sont les différentes couches du protocole OSI ?"
     content:
       - "1. Physique (cables, usb, bluetooth, ...)"
       - "2. Liaison (MAC, ethernet, token ring, ppp, ...)"
