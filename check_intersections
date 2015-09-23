@@ -5,9 +5,14 @@ require_relative 'lib/ipv4'
 
 require 'optparse'
 $opt = OptionParser.new do |opts|
-  opts.banner = "Usage: nephos-generator [controller name] [appli [name]]"
+  opts.banner = "Usage: #{$0} -r IP/CIDR [,IP/CIDR]+ \n\n" \
+  "Example: #{$0} -r 1.1.1.1/26,1.1.1.2/24"
 
-  opts.on("-r=ip1,ip2,..", Array, "Exemple: -r 1.1.1.1/26,1.1.1.2/24") do |a|
+  if ARGV.empty?
+    puts opts.banner
+  end
+
+  opts.on("-r=ip1,ip2,..", Array, "Example: -r 1.1.1.1/26,1.1.1.2/24") do |a|
     $reachables = true
     $ip1 = IPv4.new a[0]
     $ips = a[1..-1].map{|ip| IPv4.new ip}
