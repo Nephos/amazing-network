@@ -1,11 +1,8 @@
 require_relative 'ipv4'
 
-# def Interface(device, ip)
-#   Interface.new(device, ip)
-# end
-
 module AmazingNetwork
 
+  # An Interface is an object, associated to a {Device}. It has ONE IPv4.
   class Interface
 
     attr_accessor :device

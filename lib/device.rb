@@ -2,6 +2,10 @@ require_relative 'ipv4'
 
 module AmazingNetwork
 
+  # A Device is a generic object on the net.
+  # It has {Interface}s (0, 1, or more).
+  # It can connect theses interfaces to other interfaces via the phy_links
+  # It also has routes to direct it's pings to an interface or an other
   class Device
 
     attr_accessor :default_gw, :interfaces, :phy_links, :routes
