@@ -2,6 +2,10 @@
 
 class IPv4
 
+  def ==(ip)
+    self.net == ip.net and self.broad == ip.broad and self.frag == ip.frag
+  end
+
   def is_between? ip1, ip2
     ip1 = ip1.join(".") if ip1.is_a? Array
     ip2 = ip2.join(".") if ip2.is_a? Array

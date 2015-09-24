@@ -2,15 +2,13 @@
 # coding: utf-8
 
 require_relative 'lib/ipv4'
+require_relative 'lib/device'
+require_relative 'lib/router'
 
 require 'optparse'
 $opt = OptionParser.new do |opts|
   opts.banner = "Usage: #{$0} -r IP/CIDR [,IP/CIDR]+ \n\n" \
   "Example: #{$0} -r 1.1.1.1/26,1.1.1.2/24"
-
-  if ARGV.empty?
-    puts opts.banner
-  end
 
   opts.on("-r=ip1,ip2,..", Array, "Example: -r 1.1.1.1/26,1.1.1.2/24") do |a|
     $reachables = true
@@ -22,7 +20,19 @@ $opt = OptionParser.new do |opts|
     $interactive = true
   end
 
+  if ARGV.empty?
+    puts opts.banner
+  end
+
 end.parse!
+
+def interactive
+  network = []
+  loop do
+    require 'pry'
+    binding.pry
+  end
+end
 
 def reachables
   puts "-"*6 + "|" + "-"*67,

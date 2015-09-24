@@ -1,5 +1,10 @@
 # coding: utf-8
 
+def IPv4(obj)
+  return IPv4.new(obj) if obj.is_a? String
+  return obj
+end
+
 class IPv4
 
   MAX_SPACE = "255.255.255.255"
