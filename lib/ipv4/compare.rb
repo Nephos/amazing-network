@@ -2,6 +2,10 @@
 
 class IPv4
 
+  def match?(ip)
+    self.frag == IPv4(ip).frag
+  end
+
   def ==(ip)
     self.net == ip.net and self.broad == ip.broad and self.frag == ip.frag
   end
