@@ -39,13 +39,17 @@ module AmazingNetwork
       @interfaces.uniq!
     end
 
-    # rm an interface of the device
+    # delete an interface of the device
     def rm_interface ip
       @interfaces.delete_if{|i| i.ip.match?(ip)}
     end
 
     # @param interface_id [Interface, IPv4, String] a valid interface connected to the device
     # @param interface_out [Interface] a valid Interface to connect
+    #
+    # Add a physical link between 2 interfaces
+    # If a link already exists on the interface, it will be erased
+    # The interface_out has to be plugged on a device
     def add_phy_link interface_id, interface_out
       interface_id = interface_id.ip if [Interface].include? interface_id.class
       if [String, IPv4].include? interface_id.class
@@ -60,7 +64,8 @@ module AmazingNetwork
 
     # @param interface_id [Interface, IPv4, String] a valid interface connected to the device
     #
-    # = disconnect interface
+    # disconnect interface
+    # The interface_out has to be plugged on a device
     def rm_phy_link interface_id
       interface_id = interface_id.ip if [Interface].include? interface_id.class
       if [String, IPv4].include? interface_id.class

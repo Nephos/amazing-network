@@ -31,3 +31,12 @@ yourself, you should just go back to tek1 n00b.
 
 You can generate the documentation (using the gem yard ``gem install yard``).
 You can also run the unitary tests via ``rake test``.
+
+# Todo
+
+- Improve unitary tests
+- Implement the routing
+- Implement Router
+- Create interface to create network
+- Add ping! with TTL
+- Add a map view of the network (Oh yeah, without dependancies !!!!!)
