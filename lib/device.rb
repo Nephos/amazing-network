@@ -13,20 +13,35 @@ module AmazingNetwork
       # @default_gw = IPv4(default_gw) if default_gw
     end
 
+    # @param ip [IPv4, String]
+    # @return [TrueClass, FalseClass]
+    #
+    # Check if the device has an interface with the ip
     def has_ip? ip
       @interfaces.find{|i| i.ip.match?(IPv4(ip)) }
     end
 
+    # @param ip [String, IPv4, Interface] it will be converted in Interface if it is not
+    #
+    # add a new interface to the device
     def add_interface ip
-      interface = Interface.new(self, ip)
+      if not ip.is_a? Interface
+        interface = Interface.new(self, ip)
+      else
+        interface = ip
+        interface.device = self
+      end
       @interfaces << interface
       @interfaces.uniq!
     end
 
+    # rm an interface of the device
     def rm_interface ip
       @interfaces.delete_if{|i| i.ip.match?(ip)}
     end
 
+    # @param interface_id [Interface, IPv4, String] a valid interface connected to the device
+    # @param interface_out [Interface] a valid Interface to connect
     def add_phy_link interface_id, interface_out
       interface_id = interface_id.ip if [Interface].include? interface_id.class
       if [String, IPv4].include? interface_id.class
@@ -39,6 +54,8 @@ module AmazingNetwork
       interface_out.device.phy_links[interface_out] = interface_in
     end
 
+    # @param interface_id [Interface, IPv4, String] a valid interface connected to the device
+    #
     # = disconnect interface
     def rm_phy_link interface_id
       interface_id = interface_id.ip if [Interface].include? interface_id.class
@@ -62,10 +79,17 @@ module AmazingNetwork
       @routes.delete_if{|r| r.match(network)}
     end
 
+    # @param ip [IPv4, String]
+    # @return [TrueClass, FalseClass]
+    #
+    # If the device has an interface with it's ip equal to the param ip, then true
+    # Else, if the device is connected to an interace having the ip, then true
+    # Else false
     def route! ip
+      # ip = ip.interfaces.first if ip.is_a? Device
       return true if self.has_ip?(ip)
-      phy = @phy_links.find{|phy| phy.ip.match(ip)}
-      return phy.route! if phy
+      phy = @phy_links.values.find{|out| out.ip.match?(ip)}
+      return true if phy
       return false
     end
 
