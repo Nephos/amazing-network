@@ -1,5 +1,7 @@
 # Informations
 
+There is no needed dependancies, unless you want html documentation.
+
 ## How to use ?
 
 simply use it from your shell:
@@ -24,3 +26,8 @@ in the epitech context, with the network exams module.
 This is not a program designed to cheat mothafoka.
 If you are not skilled enough to compute this simple calculations
 yourself, you should just go back to tek1 n00b.
+
+## Network dev !
+
+You can generate the documentation (using the gem yard ``gem install yard``).
+You can also run the unitary tests via ``rake test``.

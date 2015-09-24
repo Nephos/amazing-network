@@ -1,6 +1,6 @@
 # coding: utf-8
 require "test/unit"
-require 'pry'
+# require 'pry'
 
 require_relative '../lib/networks'
 
