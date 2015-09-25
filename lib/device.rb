@@ -51,12 +51,7 @@ module AmazingNetwork
     # If a link already exists on the interface, it will be erased
     # The interface_out has to be plugged on a device
     def add_phy_link interface_id, interface_out
-      interface_id = interface_id.ip if [Interface].include? interface_id.class
-      if [String, IPv4].include? interface_id.class
-        interface_in = @interfaces.find{|i| i.ip.match?(interface_id)}
-      else
-        interface_in = @interfaces[interface_id]
-      end
+      interface_in = find_internal_interface(interface_id)
       raise "No such interface" if interface_in.nil?
       @phy_links[interface_in] = interface_out
       interface_out.device.phy_links[interface_out] = interface_in
@@ -67,21 +62,16 @@ module AmazingNetwork
     # disconnect interface
     # The interface_out has to be plugged on a device
     def rm_phy_link interface_id
-      interface_id = interface_id.ip if [Interface].include? interface_id.class
-      if [String, IPv4].include? interface_id.class
-        interface_in = @interfaces.find{|i| i.ip.match?(interface_id)}
-      else
-        interface_in = @interfaces[interface_id]
-      end
+      interface_in = find_internal_interface(interface_id)
       raise "No such interface" if interface_in.nil?
       device = @phy_links[interface_in].device
       @phy_links.delete interface_in
       device.phy_links.delete_if{|k, v| v.ip.match?(interface_in.ip)}
     end
 
-    def add_route network, obj
-      return false if obj.nil?
-      @routes[network] = obj
+    def add_route network, interface
+      return false if interface.nil?
+      @routes[network] = interface
     end
 
     def rm_route network
@@ -102,6 +92,24 @@ module AmazingNetwork
       phy = @phy_links.values.find{|out| out.ip.match?(ip)}
       return true if phy
       return false
+    end
+
+    private
+    # find an interface to direct the flux
+    def find_route_for(ip)
+    end
+
+    # @param id [String, IPv4, Integer, Interface]
+    #   - {Integer}: find in the list of the interfaces the n' element
+    #   - {Interface}: use it's ip like if the argument is an IPv4
+    #   - {String}, {IPv4}: find an interface having this IPv4
+    #
+    # Find an interface setup on the current device
+    def find_internal_interface(id)
+      return interface_in = @interfaces[id] if id.is_a? Integer
+      id = id.ip if id.is_a? Interface
+      id = IPv4(id) if id.is_a? String
+      interface_in = @interfaces.find{|i| i.ip.match?(id)}
     end
 
   end
