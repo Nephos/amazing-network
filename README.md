@@ -34,8 +34,7 @@ You can also run the unitary tests via ``rake test``.
 
 # Todo
 
-- Improve unitary tests
-- Implement the routing
+- Add configuration
 - Implement Router
 - Create interface to create network
 - Add ping! with TTL
