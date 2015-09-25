@@ -48,4 +48,12 @@ class TestNetwork < Test::Unit::TestCase
     assert c2.route! "10.0.1.1"
   end
 
+  def test_simple_route
+    c1 = AmazingNetwork::Device.new("10.0.0.2/24")
+    c1.add_route("10.0.1.0/24", c1.interfaces.first)
+    r = AmazingNetwork::Router.new("10.0.0.1/24", "10.0.1.1/24")
+    # c2 = AmazingNetwork::Device.new("10.0.1.2/24")
+    c1.route! "10.0.1.1/24"
+  end
+
 end

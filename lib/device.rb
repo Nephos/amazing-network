@@ -69,34 +69,40 @@ module AmazingNetwork
       device.phy_links.delete_if{|k, v| v.ip.match?(interface_in.ip)}
     end
 
-    def add_route network, interface
+    def add_route network, interface_id
+      interface = find_internal_interface(interface_id)
       return false if interface.nil?
       @routes[network] = interface
     end
 
     def rm_route network
-      @routes.delete_if{|r| r.match(network)}
+      @routes.delete_if{|net, inter| net.match(network)}
     end
 
     # @param ip [IPv4, String]
     # @return [TrueClass, FalseClass]
     #
     # If the device has an interface with it's ip equal to the param ip, then true
-    # Else, if the device is the emeter (first node),
-    # and if the device is connected to an interace having the ip, then true
+    # Else, if the device is connected to an interace having the ip, then true
+    # Else, if the device is the emeter (first node), search a route and redirect to
     # Else false
     def route! ip, is_emet=true
       # ip = ip.interfaces.first if ip.is_a? Device
       return true if self.has_ip?(ip)
-      return false if not is_emet
       phy = @phy_links.values.find{|out| out.ip.match?(ip)}
       return true if phy
-      return false
+      return false if not is_emet
+      route = find_route_for(ip)
+      return false if not route
+      return route[:to].route!(ip, false)
     end
 
     private
     # find an interface to direct the flux
     def find_route_for(ip)
+      interface = @routes.find{|net, int| IPv4(ip).is_on?(net)}
+      return nil if interface.nil?
+      return {to: interface[1].device, interface: interface[1], net: interface[0]}
     end
 
     # @param id [String, IPv4, Integer, Interface]
