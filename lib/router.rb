@@ -5,12 +5,21 @@ module AmazingNetwork
 
   class Router < Device
 
+    # @param ip [IPv4, String]
+    # @return [TrueClass, FalseClass]
+    #
+    # If the device has an interface with it's ip equal to the param ip, then true
+    # Else, if the device is connected to an interace having the ip, then true
+    # Else, search a route and redirect to
+    # Else false
     def route! ip, is_emet=true
-      ret = super(ip)
-      return true if ret
-      raise "Not implemented yet"
-      # find an network matching with the ip and route to the object
-      return obj.route!
+      # ip = ip.interfaces.first if ip.is_a? Device
+      return true if self.has_ip?(ip)
+      phy = @phy_links.values.find{|out| out.ip.match?(ip)}
+      return true if phy
+      route = find_route_for(ip)
+      return false if not route
+      return route[:to].route!(ip, false)
     end
 
   end

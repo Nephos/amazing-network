@@ -94,15 +94,17 @@ module AmazingNetwork
       return false if not is_emet
       route = find_route_for(ip)
       return false if not route
-      return route[:to].route!(ip, false)
+      return route[:to].device.route!(ip, false)
     end
 
-    private
+    protected
     # find an interface to direct the flux
     def find_route_for(ip)
       interface = @routes.find{|net, int| IPv4(ip).is_on?(net)}
       return nil if interface.nil?
-      return {to: interface[1].device, interface: interface[1], net: interface[0]}
+      to = find_connected_interface(interface[1])
+      return nil if to.nil?
+      return {to: to, from: interface[1], interface: interface[1], net: interface[0]}
     end
 
     # @param id [String, IPv4, Integer, Interface]
@@ -116,6 +118,13 @@ module AmazingNetwork
       id = id.ip if id.is_a? Interface
       id = IPv4(id) if id.is_a? String
       interface_in = @interfaces.find{|i| i.ip.match?(id)}
+    end
+
+    def find_connected_interface(from_interface)
+      from_interface = find_internal_interface(from_interface)
+      found = @phy_links.find{|from, to| from == from_interface}
+      return nil if not found
+      return found[1]
     end
 
   end
