@@ -5,7 +5,7 @@ module AmazingNetwork
 
   class Router < Device
 
-    def route! ip
+    def route! ip, is_emet=true
       ret = super(ip)
       return true if ret
       raise "Not implemented yet"
