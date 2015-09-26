@@ -1,16 +1,5 @@
 image: ruby:2.2
-services:
 
-before_script:
-  - bundle_install
-
-stages:
-  - test
-
-job1:
-  stage: test
+test:
   script:
     - rake test
-  only:
-    - master
-  tags:

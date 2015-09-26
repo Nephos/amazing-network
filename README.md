@@ -1,5 +1,7 @@
 # Informations
 
+[![build status](https://gitlab.com/ci/projects/8970/status.png?ref=master)](https://gitlab.com/ci/projects/8970?ref=master)
+
 There is no needed dependancies, unless you want html documentation.
 
 ## How to use ?
