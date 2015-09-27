@@ -80,6 +80,25 @@ module AmazingNetwork
     end
 
     # @param ip [IPv4, String]
+    # @return [Device]
+    #
+    # If the device has an interface with it's ip equal to the param ip, then self
+    # Else, if the device is the emeter (first node), then
+    # If the device is connected to an interace having the ip, then the connected device
+    # Else, search a route and redirect to or return nil
+    # This algorithm take takes of the ttl
+    def route_to ip, opt={ttl: 255, is_emet: true}
+      # ip = ip.interfaces.first if ip.is_a? Device
+      return self if self.has_ip?(ip)
+      return nil if not opt[:is_emet] or opt[:ttl] == 0
+      phy = @phy_links.values.find{|out| out.ip.match?(ip)}
+      return phy.device if phy
+      route = find_route_for(ip)
+      return nil if not route
+      return route[:to].device.route_to(ip, {ttl: opt[:ttl] - 1, is_emet: false})
+    end
+
+    # @param ip [IPv4, String]
     # @return [TrueClass, FalseClass]
     #
     # If the device has an interface with it's ip equal to the param ip, then true
@@ -88,14 +107,7 @@ module AmazingNetwork
     # Else, search a route and redirect to or return false
     # This algorithm take takes of the ttl
     def route! ip, opt={ttl: 255, is_emet: true}
-      # ip = ip.interfaces.first if ip.is_a? Device
-      return true if self.has_ip?(ip)
-      return false if not opt[:is_emet] or opt[:ttl] == 0
-      phy = @phy_links.values.find{|out| out.ip.match?(ip)}
-      return true if phy
-      route = find_route_for(ip)
-      return false if not route
-      return route[:to].device.route!(ip, {ttl: opt[:ttl] - 1, is_emet: false})
+      return route_to(ip, opt) != nil
     end
 
     protected
