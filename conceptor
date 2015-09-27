@@ -1,0 +1,65 @@
+#!/usr/bin/env ruby
+
+require_relative 'conceptor.d/device.rb'
+require_relative 'conceptor.d/interface.rb'
+require_relative 'conceptor.d/phy.rb'
+require_relative 'conceptor.d/route.rb'
+
+require_relative 'lib/networks'
+$network = {}
+
+loop do
+
+  $network.each do |name, device|
+    print "(R)" if device.is_a? AmazingNetwork::Router
+    print "#{name}:\n"
+    device.interfaces.each{|i| print "\t", "INTERFACE: ", i.ip, "\n"}
+    device.routes.each{|ip, it| print "\t", ip.to_s, " -> ", it.ip.to_s(:full), "\n" }
+    print "------------------------\n"
+  end
+
+  print "> "
+  begin
+    e = STDIN.gets
+  rescue => err
+    puts "Error: #{err.message}"
+    exit
+  end
+
+  exit if e.nil?
+  e.strip!
+  next if e.empty?
+
+  if e == "debug"
+    require 'pry'
+    binding.pry
+    next
+  end
+  # obj_type action objname <...>
+  entry = e.match(/\A(\w+) (\w+) (\w+)( (.+))?\Z/)
+  if entry.nil?
+    puts "Error: cannot match entry #{e}"
+    next
+  end
+
+  begin
+    case entry[1]
+    when /d(ev(ice)?)?/
+      device(entry)
+    when /i(ter(face)?)?/
+      interface(entry)
+    when /p(hy)?/
+      phy(entry)
+    when /r(route)?/
+      route(entry)
+    else
+      puts "Error: no kind of object '#{entry[0]}'"
+      next
+    end
+
+  rescue => err
+    puts "Error: #{err.message}"
+    next
+  end
+
+end
