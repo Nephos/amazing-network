@@ -90,7 +90,10 @@ class TestNetwork < Test::Unit::TestCase
     c1.add_route("10.0.1.0/24", c1.interfaces.first)
     c2 = AmazingNetwork::Device.new("10.0.1.2/24")
     c2.add_phy_link c2.interfaces.first, r.interfaces[1]
-    # c1.ping! "10.0.1.2/24"
+    assert_equal(true, c1.route!("10.0.1.2"))
+    assert_equal(3, c1.ping!("10.0.1.2"))
+    c2.add_route("10.0.0.0/24", c2.interfaces.first)
+    assert_equal(0, c1.ping!("10.0.1.2"))
   end
 
 end

@@ -109,7 +109,10 @@ module AmazingNetwork
       return route_to(ip, opt) != nil
     end
 
-    protected
+    def ping! ip, ttl=255
+      Ping.new(self, ip, ttl).try
+    end
+
     # find an interface to direct the flux
     def find_route_for(ip)
       interface = @routes.find{|net, int| IPv4(ip).is_on?(net)}
@@ -118,6 +121,8 @@ module AmazingNetwork
       return nil if to.nil?
       return {to: to, from: interface[1], interface: interface[1], net: interface[0]}
     end
+
+    protected
 
     # @param id [String, IPv4, Integer, Interface]
     #   - {Integer}: find in the list of the interfaces the n' element
