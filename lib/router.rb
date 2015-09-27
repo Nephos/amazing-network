@@ -8,10 +8,7 @@ module AmazingNetwork
     # @param ip [IPv4, String]
     # @return [TrueClass, FalseClass]
     #
-    # If the device has an interface with it's ip equal to the param ip, then true
-    # Else, if the device is connected to an interace having the ip, then true
-    # Else, search a route and redirect to or return false
-    # This algorithm take takes of the ttl
+    # see {Device#root_to} but forward request emetted form other devices
     def route_to ip, opt={ttl: 255, is_emet: true}
       # ip = ip.interfaces.first if ip.is_a? Device
       return self if self.has_ip?(ip)
