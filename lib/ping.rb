@@ -13,10 +13,12 @@ module AmazingNetwork
     def initialize(from, to, ttl=255)
       @from = from
       @to = to
-      @ttl = ttl
+      @ttl = -1
+      @ttl_init = ttl
     end
 
     def try
+      @ttl = @ttl_init
       @status_code = -1
       @status = false
       @message = ""
@@ -27,8 +29,6 @@ module AmazingNetwork
       front = @from.route_to(@to, {ttl: @ttl, is_emet: true})
       return _fail_to_reach_to if front.nil?
 
-      # require 'pry'
-      # binding.pry
       back = front.device.route_to(route[:from].ip)
       return _fail_to_reach_back if back.nil?
 
