@@ -1,4 +1,4 @@
-Réseaux : le routage statique IP
+RÃ©seaux : le routage statique IP
 
 
 
@@ -8,240 +8,240 @@ Réseaux : le routage statique IP
 
 Sommaire
 
- Le modèle OSI
+ Le modÃ¨le OSI
  Le protocole IP
  Le routage IP
 
-Le modèle OSI - description
+Le modÃ¨le OSI - description
 
  OSI ou Open Systems Interconnection
- Objectif : fournir un modèle pour chaque
-  architecture réseau en 7 couches.
+ Objectif : fournir un modÃ¨le pour chaque
+  architecture rÃ©seau en 7 couches.
 
-Le modèle OSI - communication
+Le modÃ¨le OSI - communication
 
- Communication entre les couches du modèle
+ Communication entre les couches du modÃ¨le
 
-Le modèle OSI ­ Couche physique
+Le modÃ¨le OSI Â­ Couche physique
 
  La couche physique fournit les moyens
-  mécaniques, électriques, fonctionnels et
-  procéduraux nécessaires à l'activation, au
-  maintien et à la désactivation des
-  connexions physiques destinées à la
-  transmission de bits entre deux entités de
-  liaison de données.
- Les cartes réseaux, les câbles coaxial, paire
+  mÃ©caniques, Ã©lectriques, fonctionnels et
+  procÃ©duraux nÃ©cessaires Ã  l'activation, au
+  maintien et Ã  la dÃ©sactivation des
+  connexions physiques destinÃ©es Ã  la
+  transmission de bits entre deux entitÃ©s de
+  liaison de donnÃ©es.
+ Les cartes rÃ©seaux, les cÃ¢bles coaxial, paire
   torsadpe, USB, Bluetooth...
 
-Le modèle OSI ­ Liaison de données
+Le modÃ¨le OSI Â­ Liaison de donnÃ©es
 
 
- La couche liaison données définit
-  l'interface avec la carte réseau et le partage
-  du média de transmission.
+ La couche liaison donnÃ©es dÃ©finit
+  l'interface avec la carte rÃ©seau et le partage
+  du mÃ©dia de transmission.
  Ethernet, Token ring, PPP, Wi-Fi...
 
-Le modèle OSI ­ la couche réseau
+Le modÃ¨le OSI Â­ la couche rÃ©seau
 
- La couche reseau permet de gérer
-  l'adressage et le routage des données, c'est-
-  à-dire leur acheminement via le réseau.
+ La couche reseau permet de gÃ©rer
+  l'adressage et le routage des donnÃ©es, c'est-
+  Ã -dire leur acheminement via le rÃ©seau.
  IPv4, IPv6, ARP, RARP, NetBEUI...
 
-Le modèle OSI ­ la couche transport
+Le modÃ¨le OSI Â­ la couche transport
 
 
- La couche transport est chargée du
-  transport des données, de leur découpage
-  en paquets et de la gestion des éventuelles
+ La couche transport est chargÃ©e du
+  transport des donnÃ©es, de leur dÃ©coupage
+  en paquets et de la gestion des Ã©ventuelles
   erreurs de transmission.
  TCP, UDP, RTP...
 
-Le modèle OSI ­ la couche session
+Le modÃ¨le OSI Â­ la couche session
 
 
- La couche session définit l'ouverture et la
+ La couche session dÃ©finit l'ouverture et la
   destruction des sessions de communication
-  entre les machines du réseau.
+  entre les machines du rÃ©seau.
  RTSP, AppleTalk, telnet ...
 
-Le modèle OSI ­ la couche
-présentation
+Le modÃ¨le OSI Â­ la couche
+prÃ©sentation
 
 
- La couche présentation définit le format
-  des données manipulées par le niveau
-  applicatif (leur représentation,
-  éventuellement leur compression et leur
-  chiffrement) indépendamment du système.
+ La couche prÃ©sentation dÃ©finit le format
+  des donnÃ©es manipulÃ©es par le niveau
+  applicatif (leur reprÃ©sentation,
+  Ã©ventuellement leur compression et leur
+  chiffrement) indÃ©pendamment du systÃ¨me.
  ASCII, MIME, Unicode ...
 
-Le modèle OSI ­ La couche application
+Le modÃ¨le OSI Â­ La couche application
 
 
  La couche application assure l'interface
   avec les applications. Il s'agit donc du niveau
-  le plus proche des utilisateurs, géré
+  le plus proche des utilisateurs, gÃ©rÃ©
   directement par les logiciels.
  HTTP, POP3, SIP, FTP, VoIP, SSH, ...
 
 L'adressage IP
 
- Définies sur 4 octets (32 bits)
-   ­ exemple en notation pointée : 192.168.0.1
-   ­ exemple en notation hexadécimale : 0xC0A80001
- Elles sont lipes à un point d'accqs rpseau et
-  non a un hôte.
- Un hôte peut être sur plusieurs réseaux.
+ DÃ©finies sur 4 octets (32 bits)
+   Â­ exemple en notation pointÃ©e : 192.168.0.1
+   Â­ exemple en notation hexadÃ©cimale : 0xC0A80001
+ Elles sont lipes Ã  un point d'accqs rpseau et
+  non a un hÃ´te.
+ Un hÃ´te peut Ãªtre sur plusieurs rÃ©seaux.
  Chaque point d'accqs rpseau doit avoir une
-  IP unique sur son réseau.
+  IP unique sur son rÃ©seau.
 
 Anatomie d'une adresse IP
 
- Une adresse IP est composée de 2 parties :
-  ­ Le host id :
+ Une adresse IP est composÃ©e de 2 parties :
+  Â­ Le host id :
       assignp par l'administrateur rpseau
-      Il identifie un hôte de manière unique sur un réseau
+      Il identifie un hÃ´te de maniÃ¨re unique sur un rÃ©seau
 
-  ­ Le net id
-      assigné par une autorité
-      Il identifie le réseau
+  Â­ Le net id
+      assignÃ© par une autoritÃ©
+      Il identifie le rÃ©seau
 
  Le dpcoupage d'une IP dppend de sa classe
 
 Classes d'adresses IP
 
- Il existe 5 classes d'adresse IP
+ Il existe 5 classes d'adresses IP puliques
 
 La classe A
 
  8 bits pour le net id
-  ­ de 0.0.0.0 à 127.0.0.0
+  Â­ de 0.0.0.0 Ã  127.0.0.0
 
  24 bits pour le host id
-  ­ 2^24 - 2 adresses possibles (16 777 214)
+  Â­ 2^24 - 2 adresses possibles (16 777 214)
 
  Pas de classe A en France
-  ­ Exemple : 18.0.0.0 MIT
+  Â­ Exemple : 18.0.0.0 MIT
 
  Attribution par le NIC (Network Information Center)
 
 La classe B
 
  16 bits pour le net id
-  ­ de 128.0.0.0 à 191.255.0.0
+  Â­ de 128.0.0.0 Ã  191.255.0.0
 
  16 bits pour le host id
-  ­ 2^16 - 2 adresses possibles (65 534)
+  Â­ 2^16 - 2 adresses possibles (65 534)
 
  Exemple :
-  ­ 163.5.0.0 (EPITECH)
+  Â­ 163.5.0.0 (EPITECH)
 
  Attribution par le NIC (Network Information Center)
 
 La classe C
 
  24 bits pour le net id
-  ­ de 192.0.0 à 223.255.255.255
+  Â­ de 192.0.0 Ã  223.255.255.255
 
  8 bits pour le host id
-  ­ 254 adresses possibles
+  Â­ 254 adresses possibles
 
  Attribution par le NIC (Network Information Center)
 
 La classe D
 
  Adresses multicast
-  ­ Transmissions point à multipoint
-  ­ Surtout utiliser pour streamer (exemple freebox)
+  Â­ Transmissions point Ã  multipoint
+  Â­ Surtout utiliser pour streamer (exemple freebox)
 
  Adresse comprises entre 224.0.0.0 et 239.255.255.255
- Utilisation spéciale
+ Utilisation spÃ©ciale
  Pas d'organisation gprant leur attribution
 
 La classe E et les adresses
-particulières
+particuliÃ¨res
 
 
  La classe E
-  ­ De 239.0.0.0 à 254.255.255.255
-  ­ Réservé pour utilisation dans la futur
- Les adresses particulières
-  ­ 127.0.0.1 loopback ou localhost
-  ­ 0.0.0.0 l'hôte ne connaît pas son IP sur le rpseau
+  Â­ De 240.0.0.0 Ã  254.255.255.255
+  Â­ RÃ©servÃ© pour utilisation dans la futur
+ Les adresses particuliÃ¨res
+  Â­ 127.0.0.1 loopback ou localhost
+  Â­ 0.0.0.0 l'hÃ´te ne connaÃ®t pas son IP sur le rpseau
 
-Adresses particulières
+Adresses particuliÃ¨res
 
- Adresse de réseau
-  ­ Tous les bits de la partie host id sont à 0.
-  ­ Exemple : 163.5.0.0 adresse du réseau de classe
+ Adresse de rÃ©seau
+  Â­ Tous les bits de la partie host id sont Ã  0.
+  Â­ Exemple : 163.5.0.0 adresse du rÃ©seau de classe
     B en 163.5 (EPITECH)
  Adresse de broadcast
-  ­ Adresse servant à contacter toutes les machines
+  Â­ Adresse servant Ã  contacter toutes les machines
     d'un rpseau
-  ­ Tous les bits de la partie host id sont à 1.
-  ­ Exemple : ping 10.42.255.255
+  Â­ Tous les bits de la partie host id sont Ã  1.
+  Â­ Exemple : ping 10.42.255.255
 
 Notion de sous-reseau IP
 
- But : découper un réseau en plusieurs réseaux de plus
+ But : dÃ©couper un rÃ©seau en plusieurs rÃ©seaux de plus
   petite taille.
- Les sous-résaux sont aussi appelés subnet.
- Facilite la structuration des réseaux.
- Adresse de sous réseaux prise sur la partie host id.
- L'administrateur est chargp de crper ses sous-réseaux.
+ Les sous-rÃ©saux sont aussi appelÃ©s subnet.
+ Facilite la structuration des rÃ©seaux.
+ Adresse de sous rÃ©seaux prise sur la partie host id.
+ L'administrateur est chargp de crper ses sous-rÃ©seaux.
  Longueur des subnets en bits et variables en fonction de
-  la taille des sous-réseaux désirés.
+  la taille des sous-rÃ©seaux dÃ©sirÃ©s.
 
 Les masques de sous-reseaux
 
  Masques de sous-reseaux ou netmask
- Nécessaires pour connaître quelle est la partie
+ NÃ©cessaires pour connaÃ®tre quelle est la partie
   subnet id et la partie host id.
- Nécessaire savoir sur quel sous réseau se trouve un
-  hôte.
+ NÃ©cessaire savoir sur quel sous rÃ©seau se trouve un
+  hÃ´te.
  Formp de la mrme maniqre qu'une IP.
-  ­ Les 1 représente la partie net id.
-  ­ Les 0 représente la partie host id
+  Â­ Les 1 reprÃ©sente la partie net id.
+  Â­ Les 0 reprÃ©sente la partie host id
  Exemple :
-  ­ netmask par dpfaut d'une IP de classe B sans sous rpseau
-    255.255.0.0 (hexadécimal 0xffff0000)
-  ­ Netmask par dpfaut d'une IP de classe C sans sous rpseau
-    255.255.255.0 (hexadécimal 0xffffff00)
+  Â­ netmask par dpfaut d'une IP de classe B sans sous rpseau
+    255.255.0.0 (hexadÃ©cimal 0xffff0000)
+  Â­ Netmask par dpfaut d'une IP de classe C sans sous rpseau
+    255.255.255.0 (hexadÃ©cimal 0xffffff00)
 
-Exemple de découpage en sous-
-réseaux
+Exemple de dÃ©coupage en sous-
+rÃ©seaux
 
- 254 sous réseau possible pour un réseau de classe A
+ 254 sous rÃ©seau possible pour un rÃ©seau de classe A
   avec un netmask de 255.255.0.0
 
-                                                    10.0.0.0 ­ 255.0.0.0
+                                                    10.0.0.0 Â­ 255.0.0.0
 
 
 
 
-                                    10.42.0.0 ­ 255.255.0.0
+                                    10.42.0.0 Â­ 255.255.0.0
 
 
 
 
-                          10.245.0.0 ­ 255.255.0.0
+                          10.245.0.0 Â­ 255.255.0.0
 
 
 
 
-                                   10.247.0.0 ­ 255.255.0.0
+                                   10.247.0.0 Â­ 255.255.0.0
 
-Rôle de l'IP
+RÃ´le de l'IP
 
  Transport de datagramme IP
-  ­ Paquets de données
+  Â­ Paquets de donnÃ©es
 
- Mode non connecté
-  ­ Route non pré-établie
-  ­ Paquets routés indépendaments
-  ­ Tous les paquets ne suivent pas forcément la même route
+ Mode non connectÃ©
+  Â­ Route non prÃ©-Ã©tablie
+  Â­ Paquets routÃ©s indÃ©pendaments
+  Â­ Tous les paquets ne suivent pas forcÃ©ment la mÃªme route
 
  N'assure pas la livraison
  A lire : RFC 1149 transmission des paquets IP sur
@@ -261,11 +261,11 @@ DATA
 Fragmentation des datagrammes IP
 
 
- Un datagramme IP peut faire jusqu'à 65 534 octet.
- Un datagramme IP ne peut pas forcement être transmis en un
+ Un datagramme IP peut faire jusqu'Ã  65 534 octet.
+ Un datagramme IP ne peut pas forcement Ãªtre transmis en un
 morceau.
-Les routeurs ont la charge de découper les datagrammes IP pour se
-conformer aux contraintes des réseaux sur lesquels ils circulent.
+Les routeurs ont la charge de dÃ©couper les datagrammes IP pour se
+conformer aux contraintes des rÃ©seaux sur lesquels ils circulent.
 Le MTU (Maximum Transfert Unit) dptermine la taille maximum d'un
 datagramme
  MTU d'ethernet : 1500
@@ -273,17 +273,17 @@ Aucune garantie que les paquet arrive dans la bon ordre.
 
 Les routeurs
 
- Équipement réseaux permettant de relier des
-  réseaux entre eux.
- Décrémente les TTL des header IP.
- Ils possède une table de routage.
+ Ã‰quipement rÃ©seaux permettant de relier des
+  rÃ©seaux entre eux.
+ DÃ©crÃ©mente les TTL des header IP.
+ Ils possÃ¨de une table de routage.
 
 Table de routage IP
 
  La table de routage est une table de
   correspondance entre l'adresse du sous-
   reseau et le noeud suivant auquel le routeur
-  doit délivrer le message.
+  doit dÃ©livrer le message.
 
 Exemple de table de routage
 
@@ -294,89 +294,89 @@ Les flags :
 U - La route est en service.
 G - La route est un routeur (gateway).
 H - La route est un ordinateur (host)
-D - La route a été créée par une redirection.
-M - La route a été modifiée par une redirection.
+D - La route a Ã©tÃ© crÃ©Ã©e par une redirection.
+M - La route a Ã©tÃ© modifiÃ©e par une redirection.
 
 Routage IP statique
 
- Lorsqu'un hôte A veut envoyer un paquet à
-  un hôte B :
-  ­ A regarde si il a une interface dans le même
-    réseau ou sous-reseau que B.
-      Si oui : A envoie le paquet directement à B
-      Si non : A regarde dans sa table de routage si il connaît
-       une route pour aller à B.
-         ­ Si oui A envoie le paquet à l'hôte indiqup dans la route
-         ­ Si non A envoie le paquet à sa passerelle par défaut.
+ Lorsqu'un hÃ´te A veut envoyer un paquet Ã 
+  un hÃ´te B :
+  Â­ A regarde si il a une interface dans le mÃªme
+    rÃ©seau ou sous-reseau que B.
+      Si oui : A envoie le paquet directement Ã  B
+      Si non : A regarde dans sa table de routage si il connaÃ®t
+       une route pour aller Ã  B.
+         Â­ Si oui A envoie le paquet Ã  l'hÃ´te indiqup dans la route
+         Â­ Si non A envoie le paquet Ã  sa passerelle par dÃ©faut.
 
-Problématiques de routage
+ProblÃ©matiques de routage
 
  Les boucles
- Les adresses IP privées non routées sur
+ Les adresses IP privÃ©es non routÃ©es sur
   Internet :
-   ­ Classe A : 10.0.0.1 à 10.255.255.254
-   ­ Classes B : 172.16.0.1 à 172.31.255.254
-   ­ Classes C : 192.168.0.1 à 192.168.255.254
+   Â­ Classe A : 10.0.0.1 Ã  10.255.255.254
+   Â­ Classes B : 172.16.0.1 Ã  172.31.255.254
+   Â­ Classes C : 192.168.0.1 Ã  192.168.255.254
 
 Calculs relatifs au CIDR
 
  CIDR : Classless Inter-Domain Routing
-  ­ IP de la forme : 192.168.0.0/24
+  Â­ IP de la forme : 192.168.0.0/24
 
- Pour passer de la forme CIDR à la notation
-  classique il faut passer en représentation binaire.
-  ­ /24 => 11111111 11111111 11111111 00000000
+ Pour passer de la forme CIDR Ã  la notation
+  classique il faut passer en reprÃ©sentation binaire.
+  Â­ /24 => 11111111 11111111 11111111 00000000
 
-  ­   =>      255         255      255     0
+  Â­   =>      255         255      255     0
  Exercice convertir 172.16.4.2/30 en notation
   classique.
 
-Autres calculs relatif à des adresses IP
+Autres calculs relatif Ã  des adresses IP
 
 
  Trouver l'adresse d'un rpseau
  Trouver une adresse de broadcast
- Être capable de déterminer si deux machines
+ ÃŠtre capable de dÃ©terminer si deux machines
   peuvent se parler.
 
 ARP
 
- Trouver une MAC à partir d'une IP.
- Mécanisme de broadcast sur Ethernet.
+ Trouver une MAC Ã  partir d'une IP.
+ MÃ©canisme de broadcast sur Ethernet.
  Maintient une table de correspondance entre
   IP et ARP.
-   ­ arp -a
+   Â­ arp -a
 
- RARP même principe que ARP mais pour
+ RARP mÃªme principe que ARP mais pour
   trouver une adresse IP.
 
 ICMP
 
  Internet Control Message Protocol
- Implémenté sur presque tous les
-  équipements réseau.
- Message envoyé :
-   ­ En cas de problème sur un datagramme
-   ­ Pour modifier un comportement
+ ImplÃ©mentÃ© sur presque tous les
+  Ã©quipements rÃ©seau.
+ Message envoyÃ© :
+   Â­ En cas de problÃ¨me sur un datagramme
+   Â­ Pour modifier un comportement
 
 UDP
 
  Service de connexion sans garantie
- Ne gère pas de mode connecté
+ Ne gÃ¨re pas de mode connectÃ©
  Pas de rppmission en cas d'erreur
- Délivre un datagramme à un service
+ DÃ©livre un datagramme Ã  un service
 
 TCP
 
  Transport
-  ­ De bout en bout entre application
-  ­ Gère le mode connecté
-  ­ Sans erreur
-  ­ Sans perte
-  ­ Ordonné
-  ­ Systqme d'acquittement
-  ­ Avec contrôle de flux
-  ­ Indication du service par numéro de port
+  Â­ De bout en bout entre application
+  Â­ GÃ¨re le mode connectÃ©
+  Â­ Sans erreur
+  Â­ Sans perte
+  Â­ OrdonnÃ©
+  Â­ Systqme d'acquittement
+  Â­ Avec contrÃ´le de flux
+  Â­ Indication du service par numÃ©ro de port
 
 FIN
 
